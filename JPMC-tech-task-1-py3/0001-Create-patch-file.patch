@@ -1,18 +1,41 @@
-From 7f02102ccb465bc13fae70218065d3faabeb8fae Mon Sep 17 00:00:00 2001
-From: Chandrika Deb <chandrikadeb7@gmail.com>
-Date: Tue, 5 May 2020 10:08:13 +0530
-Subject: [PATCH] Create patch file
+From e918b6a34c3fb09806657daf540f1f3fb02970d0 Mon Sep 17 00:00:00 2001
+From: Raghav khanna <raghavkhanna54321@gmail.com>
+Date: Wed, 10 Jun 2020 11:15:33 +0000
+Subject: [PATCH] Create Patch File
 
 ---
- client3.py     | 12 ++++++++----
- client_test.py |  7 +++++--
- 2 files changed, 13 insertions(+), 6 deletions(-)
+ client3.py | 32 +++++++++-----------------------
+ 1 file changed, 9 insertions(+), 23 deletions(-)
 
 diff --git a/client3.py b/client3.py
-index f1771c3..220a692 100644
+index f1771c3..9fec47b 100644
 --- a/client3.py
 +++ b/client3.py
-@@ -35,25 +35,29 @@ def getDataPoint(quote):
+@@ -1,22 +1,4 @@
+-################################################################################
+-#
+-#  Permission is hereby granted, free of charge, to any person obtaining a
+-#  copy of this software and associated documentation files (the "Software"),
+-#  to deal in the Software without restriction, including without limitation
+-#  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+-#  and/or sell copies of the Software, and to permit persons to whom the
+-#  Software is furnished to do so, subject to the following conditions:
+-#
+-#  The above copyright notice and this permission notice shall be included in
+-#  all copies or substantial portions of the Software.
+-#
+-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+-#  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+-#  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+-#  DEALINGS IN THE SOFTWARE.
++
+ 
+ import urllib.request
+ import time
+@@ -35,25 +17,29 @@ def getDataPoint(quote):
  	stock = quote['stock']
  	bid_price = float(quote['top_bid']['price'])
  	ask_price = float(quote['top_ask']['price'])
@@ -46,36 +69,7 @@ index f1771c3..220a692 100644
  
 -		print ("Ratio %s" % getRatio(price, price))
 +		print ("Ratio %s" % getRatio(prices['ABC'], prices['DEF']))
-diff --git a/client_test.py b/client_test.py
-index af2bf26..bc510a0 100644
---- a/client_test.py
-+++ b/client_test.py
-@@ -1,5 +1,5 @@
- import unittest
--from client3 import getDataPoint
-+from client3 import getDataPoint, getRatio
- 
- class ClientTest(unittest.TestCase):
-   def test_getDataPoint_calculatePrice(self):
-@@ -8,6 +8,8 @@ class ClientTest(unittest.TestCase):
-       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
-     ]
-     """ ------------ Add the assertion below ------------ """
-+    for quote in quotes:
-+      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price'] + quote['top_ask']['price'])/2))
- 
-   def test_getDataPoint_calculatePriceBidGreaterThanAsk(self):
-     quotes = [
-@@ -15,7 +17,8 @@ class ClientTest(unittest.TestCase):
-       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
-     ]
-     """ ------------ Add the assertion below ------------ """
--
-+    for quote in quotes:
-+      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price'] + quote['top_ask']['price'])/2))
- 
-   """ ------------ Add more unit tests ------------ """
- 
+\ No newline at end of file
 -- 
-2.17.2 (Apple Git-113)
+2.17.1
 
